@@ -79,7 +79,7 @@ $ git push origin :bug-id                           // deletes the remote branch
 
 ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c42699cf-fe19-4448-bee7-f5ca0bcd1af9/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c42699cf-fe19-4448-bee7-f5ca0bcd1af9/Untitled.png)
 
-# 2. Commit message (이 부분은 불편하면 삭제하겠습니다.)
+# 2. Commit message (이 부분은 불편하면 삭제하겠습니다. 다만 다른 사람이 쉽게 알아 볼 수 있도록 작성해 주십시오)
 
 ---
 

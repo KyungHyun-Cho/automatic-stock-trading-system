@@ -244,6 +244,7 @@ namespace KOASampleCS
             axKHOpenAPI.SetInputValue("종목코드", txt종목코드.Text.Trim());
 
             int nRet = axKHOpenAPI.CommRqData("주식기본정보", "OPT10001", 0, GetScrNum());
+			
             scrNum++;
 
             if (Error.IsError(nRet))

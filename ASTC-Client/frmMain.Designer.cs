@@ -34,6 +34,9 @@
 			this.btnSearch = new System.Windows.Forms.Button();
 			this.txtCode = new System.Windows.Forms.TextBox();
 			this.lblCode = new System.Windows.Forms.Label();
+			this.btnGetRealData = new System.Windows.Forms.Button();
+			this.labRealData = new System.Windows.Forms.Label();
+			this.stockTextBox = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.axKHOpenAPI)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -73,6 +76,7 @@
 			this.txtCode.Name = "txtCode";
 			this.txtCode.Size = new System.Drawing.Size(88, 21);
 			this.txtCode.TabIndex = 3;
+			this.txtCode.Text = "005930";
 			// 
 			// lblCode
 			// 
@@ -83,11 +87,40 @@
 			this.lblCode.TabIndex = 4;
 			this.lblCode.Text = "종목 코드 :";
 			// 
+			// btnGetRealData
+			// 
+			this.btnGetRealData.Location = new System.Drawing.Point(83, 123);
+			this.btnGetRealData.Name = "btnGetRealData";
+			this.btnGetRealData.Size = new System.Drawing.Size(76, 32);
+			this.btnGetRealData.TabIndex = 5;
+			this.btnGetRealData.Text = "실시간 조회";
+			this.btnGetRealData.UseVisualStyleBackColor = true;
+			this.btnGetRealData.Click += new System.EventHandler(this.BtnGetRealData_Click);
+			// 
+			// labRealData
+			// 
+			this.labRealData.AutoSize = true;
+			this.labRealData.Location = new System.Drawing.Point(177, 174);
+			this.labRealData.Name = "labRealData";
+			this.labRealData.Size = new System.Drawing.Size(11, 12);
+			this.labRealData.TabIndex = 6;
+			this.labRealData.Text = "0";
+			// 
+			// stockTextBox
+			// 
+			this.stockTextBox.Location = new System.Drawing.Point(197, 267);
+			this.stockTextBox.Name = "stockTextBox";
+			this.stockTextBox.Size = new System.Drawing.Size(78, 21);
+			this.stockTextBox.TabIndex = 7;
+			// 
 			// frmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.stockTextBox);
+			this.Controls.Add(this.labRealData);
+			this.Controls.Add(this.btnGetRealData);
 			this.Controls.Add(this.lblCode);
 			this.Controls.Add(this.txtCode);
 			this.Controls.Add(this.btnSearch);
@@ -95,6 +128,7 @@
 			this.Controls.Add(this.axKHOpenAPI);
 			this.Name = "frmMain";
 			this.Text = "ASTS-Client";
+			this.Load += new System.EventHandler(this.FrmMain_Load);
 			((System.ComponentModel.ISupportInitialize)(this.axKHOpenAPI)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -108,6 +142,9 @@
 		private System.Windows.Forms.Button btnSearch;
 		private System.Windows.Forms.TextBox txtCode;
 		private System.Windows.Forms.Label lblCode;
+		private System.Windows.Forms.Button btnGetRealData;
+		private System.Windows.Forms.Label labRealData;
+		private System.Windows.Forms.TextBox stockTextBox;
 	}
 }
 

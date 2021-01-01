@@ -19,7 +19,6 @@ namespace ASTC_Client
 		public frmMain()
 		{
 			InitializeComponent();
-			axKHOpenAPI.CommConnect();
 			axKHOpenAPI.OnEventConnect += OnEventConnect;
 			axKHOpenAPI.OnReceiveTrData += OnReceiveTrData; // 3. EventListener 등록
 			axKHOpenAPI.OnReceiveRealData += OnReceiveRealData;
@@ -86,6 +85,14 @@ namespace ASTC_Client
 					jPrice = jPrice.Trim();
 					MessageBox.Show("[" + jName + "]\n현재가 : " + jPrice);
 				}
+			}else if("예수금조회".Equals(e.sRQName))
+			{
+				for (int i = 0; i <= receiveCnt; i++)
+				{
+					string rPrice = axKHOpenAPI.GetCommData(e.sTrCode, e.sRQName, i, "예수금"); // 4. GetCommData 메소드를 통해 데이터 접근
+					rPrice = String.Format("{0:#,###}원",int.Parse(rPrice));
+					labSeedMoney.Text = rPrice;
+				}
 			}
 		}
 		private void BtnSearch_Click(object sender, EventArgs e)
@@ -105,8 +112,36 @@ namespace ASTC_Client
 
 		private void BtnGetRealData_Click(object sender, EventArgs e)
 		{
-			string a = axKHOpenAPI.GetCommRealData(txtCode.Text, 10);
-			int n = stockList.Count;
+
+		}
+
+		private void LabGetUserInfo_Click(object sender, EventArgs e)
+		{
+			if (axKHOpenAPI.GetConnectState() == 0) return;
+			accountList.Items.Clear();
+			labID.Text = axKHOpenAPI.GetLoginInfo("USER_ID");
+			labName.Text = axKHOpenAPI.GetLoginInfo("USER_NAME");
+
+			string[] accountArr = axKHOpenAPI.GetLoginInfo("ACCNO").Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+
+			accountList.Items.AddRange(accountArr);
+			accountList.SelectedIndex = 0;
+		}
+
+		private void AccountList_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (accountList.SelectedIndex == -1) return;
+			axKHOpenAPI.SetInputValue("계좌번호", accountList.Items[accountList.SelectedIndex].ToString());
+			axKHOpenAPI.SetInputValue("비밀번호", "");
+			axKHOpenAPI.SetInputValue("비밀번호입력매체구분", "00");
+
+			axKHOpenAPI.SetInputValue("조회구분", "2");
+			int ret = axKHOpenAPI.CommRqData("예수금조회", "OPW00001", 0, "1000"); // 2. CommRqData 를 통해 데이터 요청
+			if (ret < 0)
+			{
+				MessageBox.Show("요청 실패\nError Code : " + ret, "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				labSeedMoney.Text = "Err";
+			}
 		}
 	}
 }
